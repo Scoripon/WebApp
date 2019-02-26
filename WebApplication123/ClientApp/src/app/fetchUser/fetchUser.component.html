@@ -1,0 +1,35 @@
+<h1>User Data</h1>
+<p>This component demonstrates fetching User data from the server.</p>
+<p *ngIf="!usrList"><em>Loading...</em></p>
+<p>
+  <a [routerLink]="['/register-user']">Create New</a>
+</p>
+<table class='table' *ngIf="userList">
+  <thead>
+    <tr>
+      <th>id_korisnik</th>
+      <th>ime</th>
+      <th>prezime</th>
+      <th>email</th>
+      <th>username</th>
+      <th>password</th>
+      <th>tip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usr of userList">
+      <td>{{ usr.id_korisnik }}</td>
+      <td>{{ usr.ime }}</td>
+      <td>{{ usr.prezime }}</td>
+      <td>{{ usr.email }}</td>
+      <td>{{ usr.username }}</td>
+      <td>{{ usr.password }}</td>
+      <td>{{ usr.tip }}</td>
+      <td>
+      <td>
+        <a [routerLink]="['/user/edit/', usr.id_korisnik]">Edit</a> |
+        <a [routerLink]="" (click)="delete(usr.id_korisnik)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
