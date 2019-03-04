@@ -3,16 +3,16 @@ import { Http, Headers } from '@angular/http';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FetchUserComponent } from '../fetchUser/fetchUser.component';
-import { UserService } from '../Services/UserService.service';
+import { UserService } from '../services/UserService.service';
 
 @Component({
   selector: 'createUser',
-  templateUrl: './AddUser.component.html'
+  templateUrl: './createUser.component.html'
 })
 export class createUser implements OnInit {
   userForm: FormGroup;
   title: string = "Create";
-  id_korisnik!: number;
+  id_korisnik: number;
   errorMessage: any;
   constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,
     private _userService: UserService, private _router: Router) {

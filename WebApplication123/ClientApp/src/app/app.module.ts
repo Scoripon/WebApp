@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { UserService } from './services/UserService.service'
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchUserComponent } from './fetchUser/fetchUser.component';
 import { createUser } from './addUser/createUser.component';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,8 +20,9 @@ import { createUser } from './addUser/createUser.component';
   ],
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,7 +33,8 @@ import { createUser } from './addUser/createUser.component';
       { path: '**', redirectTo: 'home' }
     ])
   ],
-  providers: [UserService]
+  providers: [UserService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

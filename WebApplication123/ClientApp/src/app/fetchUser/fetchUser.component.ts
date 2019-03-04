@@ -1,15 +1,15 @@
 import { Component, Inject } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../Services/UserService.service';
+import { UserService } from '../services/UserService.service';
 @Component({
   selector: 'fetchUser',
   templateUrl: './fetchUser.component.html'
 })
 export class FetchUserComponent {
-  public userList!: UserData[];
+  public userList: UserData[];
 
-  constructor(public http: Http, private _router: Router, private _userService: UserService) {
+  constructor(public http: HttpClient, private _router: Router, private _userService: UserService) {
     this.getUsers();
   }
   getUsers() {
