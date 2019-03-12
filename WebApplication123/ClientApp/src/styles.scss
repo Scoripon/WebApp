@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Set all input placeholders to disappear on focus
+input {
+    /* WebKit browsers */
+    &:focus::-webkit-input-placeholder { color: transparent; }
+
+    /* Mozilla Firefox 4 to 18 */
+    &:focus:-moz-placeholder { color: transparent; }
+
+    /* Mozilla Firefox 19+ */
+    &:focus::-moz-placeholder { color: transparent; }
+
+    /* Internet Explorer 10+ */
+    &:focus:-ms-input-placeholder { color: transparent; }
+}
