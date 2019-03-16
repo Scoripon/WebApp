@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from '../_helpers/custom-validators';
+import { UserService } from '../_services/user.service';
+import { User } from '../_models/user';
+import { stringify } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -17,7 +20,8 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private router: Router
+        private router: Router,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
@@ -64,13 +68,23 @@ export class RegisterComponent implements OnInit {
         }
 
         // Create User object
-        const user = {
-            name: this.f.firstName.value,
+        const user: User = {
+            id: null,
+            firstName: this.f.firstName.value,
             lastName: this.f.lastName.value,
             username: this.f.username.value,
-            password: this.f.password.value
-
+            password: this.f.password.value,
+            type: null // for now until we add type to register form
         };
-        // this.router.navigate(['login']);
+
+        this.userService.registerUser(user).subscribe(
+            data => {
+                // this.alertService.success('Registration successful', true);
+                // this.router.navigate(['/login']);
+            },
+            error => {
+                // this.alertService.error(error);
+            }
+        );
     }
 }

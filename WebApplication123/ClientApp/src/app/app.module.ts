@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 
 // Services
-
+import { UserService } from './_services/user.service';
 
 // Routes setup
 const appRoutes: Routes = [
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
