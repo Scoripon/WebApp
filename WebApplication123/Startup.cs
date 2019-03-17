@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Web.Http;
+using System.Web.Cors;
 
 namespace WebApplication123
 {
@@ -45,7 +47,12 @@ namespace WebApplication123
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseCors(builder =>
+                builder
+                .WithOrigins("http://localhost")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -65,6 +72,16 @@ namespace WebApplication123
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+        public static void Register(HttpConfiguration config)
+        {
+            config.EnableCors();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
         }
     }
 }

@@ -5,6 +5,8 @@ import { CustomValidators } from '../_helpers/custom-validators';
 import { UserService } from '../_services/user.service';
 import { User } from '../_models/user';
 import { stringify } from '@angular/compiler/src/util';
+import { Console } from '@angular/core/src/console';
+import { error } from 'util';
 
 
 @Component({
@@ -69,7 +71,7 @@ export class RegisterComponent implements OnInit {
 
         // Create User object
         const user: User = {
-            id: null,
+            id_user: null,
             firstName: this.f.firstName.value,
             lastName: this.f.lastName.value,
             username: this.f.username.value,
@@ -79,10 +81,12 @@ export class RegisterComponent implements OnInit {
 
         this.userService.registerUser(user).subscribe(
             data => {
+                console.log(data);
                 // this.alertService.success('Registration successful', true);
                 // this.router.navigate(['/login']);
             },
             error => {
+                console.log(error);
                 // this.alertService.error(error);
             }
         );

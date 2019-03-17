@@ -9,7 +9,8 @@ namespace WebApplication123.Model
 {
     public class UserDAO
     {
-        string connectionString = @"Data Source=(local)\LAZARSQL;Initial Catalog=PaymenySystem;Integrated Security = True;";
+        private const string connectionString = @"Data Source=(local)\LAZARSQL;Initial Catalog=PayMeApp;Integrated Security = True;";
+        private const string defaultUser = "w";
         //To View all users details
         public IEnumerable<User> GetAllUsers()
         {
@@ -25,13 +26,12 @@ namespace WebApplication123.Model
                     while (rdr.Read())
                     {
                         User user = new User();
-                        user.id_korisnik = Convert.ToInt32(rdr["id_korisnik"]);
-                        user.ime = rdr["ime"].ToString();
-                        user.prezime = rdr["prezime"].ToString();
-                        user.email = rdr["email"].ToString();
+                        user.id_user = Convert.ToInt32(rdr["id_user"]);
+                        user.firstname = rdr["firstname"].ToString();
+                        user.lastname = rdr["lastname"].ToString();
                         user.username = rdr["username"].ToString();
                         user.password = rdr["password"].ToString();
-                        user.tip = rdr["tip"].ToString();
+                        user.type = rdr["type"].ToString();
                         users.Add(user);
                     }
                     con.Close();
@@ -52,12 +52,11 @@ namespace WebApplication123.Model
                 {
                     SqlCommand cmd = new SqlCommand("spAddUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Ime", user.ime);
-                    cmd.Parameters.AddWithValue("@Prezime", user.prezime);
-                    cmd.Parameters.AddWithValue("@Email", user.email);
+                    cmd.Parameters.AddWithValue("@Firstname", user.firstname);
+                    cmd.Parameters.AddWithValue("@Lastname", user.lastname);
                     cmd.Parameters.AddWithValue("@Username", user.username);
                     cmd.Parameters.AddWithValue("@Password", user.password);
-                    cmd.Parameters.AddWithValue("@Tip", user.tip);
+                    cmd.Parameters.AddWithValue("@Type", defaultUser);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -78,12 +77,11 @@ namespace WebApplication123.Model
                 {
                     SqlCommand cmd = new SqlCommand("spUpdateUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Ime", user.ime);
-                    cmd.Parameters.AddWithValue("@Prezime", user.prezime);
-                    cmd.Parameters.AddWithValue("@Email", user.email);
+                    cmd.Parameters.AddWithValue("@Firstname", user.firstname);
+                    cmd.Parameters.AddWithValue("@Lastname", user.lastname);
                     cmd.Parameters.AddWithValue("@Username", user.username);
                     cmd.Parameters.AddWithValue("@Password", user.password);
-                    cmd.Parameters.AddWithValue("@Tip", user.tip);
+                    cmd.Parameters.AddWithValue("@Type", user.type);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -96,26 +94,25 @@ namespace WebApplication123.Model
             }
         }
         //Get the details of a particular user
-        public User GetUserData(int id_korisnik)
+        public User GetUserData(int id_user)
         {
             try
             {
                 User user = new User();
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    string sqlQuery = "SELECT * FROM Korisnik WHERE id_korisnik= " + id_korisnik;
+                    string sqlQuery = "SELECT * FROM Users WHERE id_user= " + id_user;
                     SqlCommand cmd = new SqlCommand(sqlQuery, con);
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        user.id_korisnik = Convert.ToInt32(rdr["id_korisnik"]);
-                        user.ime = rdr["ime"].ToString();
-                        user.prezime = rdr["prezime"].ToString();
-                        user.email = rdr["email"].ToString();
+                        user.id_user = Convert.ToInt32(rdr["id_user"]);
+                        user.firstname = rdr["firstname"].ToString();
+                        user.lastname = rdr["lastname"].ToString();
                         user.username = rdr["username"].ToString();
                         user.password = rdr["password"].ToString();
-                        user.tip = rdr["tip"].ToString();
+                        user.type = rdr["type"].ToString();
                     }
                 }
                 return user;
@@ -126,7 +123,7 @@ namespace WebApplication123.Model
             }
         }
         //To Delete the record on a particular user
-        public int DeleteUser(int id_korisnik)
+        public int DeleteUser(int id_user)
         {
             try
             {
@@ -134,7 +131,7 @@ namespace WebApplication123.Model
                 {
                     SqlCommand cmd = new SqlCommand("spDeleteUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_korisnik", id_korisnik);
+                    cmd.Parameters.AddWithValue("@id_user", id_user);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
