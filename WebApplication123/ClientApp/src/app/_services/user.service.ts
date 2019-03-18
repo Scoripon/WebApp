@@ -18,7 +18,8 @@ export class UserService {
      * @description It will send User object to the backend API
      */
     registerUser(user: User) {
-        return this.http.post('/User/Create', user);
+        return this.http.post('/User/Create', user);// Ovaj user je popunjen, ali, do mene stize prazan object
+                                                    // ne mogu da skontam gde treba da ga popunjava
     }
 
     /**
