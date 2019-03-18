@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../_models/user';
+import { post } from 'selenium-webdriver/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class UserService {
      * @description It will send User object to the backend API
      */
     registerUser(user: User) {
-        return this.http.post('api/User/Create', user);
+        return this.http.post('/User/Create', user);
     }
 
     /**
@@ -35,7 +36,7 @@ export class UserService {
      * @description It will get User with specified id from the database, if he exists
      */
     getUserById(id) {
-        return this.http.get('api/User/Details/' + id);
+        return this.http.get('/User/Details/' + id);
     }
 
     /**

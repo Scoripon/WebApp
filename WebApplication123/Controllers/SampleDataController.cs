@@ -12,36 +12,36 @@ using System.Web.Http.Cors;
 namespace WebApplication123.Controllers
 {
     [Route("api/[controller]")]
-    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
+    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*",SupportsCredentials = true)]
     public class UserController : Controller
     {
         UserDAO objUser = new UserDAO();
         [HttpGet]
-        [Route("api/User/Index")]
+        [Route("/User/Index")]
         public IEnumerable<User> Index()
         {
             return objUser.GetAllUsers();
         }
         [HttpPost]
-        [Route("api/User/Create")]
+        [Route("/User/Create")]
         public int Create([FromBody] User user)
         {
             return objUser.AddUser(user);
         }
         [HttpGet]
-        [Route("api/User/Details/{id}")]
+        [Route("/User/Details/{id}")]
         public User Details(int id)
         {
             return objUser.GetUserData(id);
         }
         [HttpPut]
-        [Route("api/User/Edit")]
+        [Route("/User/Edit")]
         public int Edit([FromBody]User user)
         {
             return objUser.UpdateUser(user);
         }
         [HttpDelete]
-        [Route("api/User/Delete/{id}")]
+        [Route("/User/Delete/{id}")]
         public int Delete(int id)
         {
             return objUser.DeleteUser(id);
