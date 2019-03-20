@@ -25,6 +25,10 @@ bin/
 Bin/
 obj/
 Obj/
+.vs/WebApplication123/v15/Server/sqlite3/storage.ide-wal
+.vs/WebApplication123/v15/Server/sqlite3/storage.ide-shm
+.vs/WebApplication123/v15/.suo
+.vs/slnx.sqlite
 
 # Visual Studio 2015 cache/options directory
 .vs/
