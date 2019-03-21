@@ -1,0 +1,32 @@
+.main-container {
+
+    .nav-container {
+
+        nav {
+            padding: 10px;
+            box-shadow: -2px 4px 19px -6px #66b9f4;
+            font-size: 20px;
+            color: #616a7a;
+
+            ul {
+                margin: unset;
+
+                li {
+                    display: inline-block;
+                    padding: 10px;
+                }
+
+                a {
+                    text-decoration: none !important;
+                    color: #001a4d;
+
+                    &:hover {
+                        color: #66b9f4;
+                    }
+                }
+            }
+        }
+    }
+
+    .content-container  {}
+}
