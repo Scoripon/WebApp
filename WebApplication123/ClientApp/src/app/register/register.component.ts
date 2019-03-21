@@ -71,7 +71,6 @@ export class RegisterComponent implements OnInit {
 
         // Create User object
         const user: User = {
-            //id_user: null,
             firstName: this.f.firstName.value,
             lastName: this.f.lastName.value,
             username: this.f.username.value,

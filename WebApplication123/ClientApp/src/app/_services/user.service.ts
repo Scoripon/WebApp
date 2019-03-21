@@ -18,8 +18,7 @@ export class UserService {
      * @description It will send User object to the backend API
      */
     registerUser(user: User) {
-        return this.http.post('/User/Create', user);// Ovaj user je popunjen, ali, do mene stize prazan object
-                                                    // ne mogu da skontam gde treba da ga popunjava
+        return this.http.post('/User/Create', user);
     }
 
     /**
@@ -28,7 +27,7 @@ export class UserService {
      * @description It will send edited User object to the backend API, and update the user
      */
     editUser(user: User) {
-        return this.http.put('api/User/Edit', user);
+        return this.http.put('/User/Edit', user);
     }
 
     /**
@@ -45,7 +44,7 @@ export class UserService {
      * @description It will get all registered users from the database
      */
     getAllUsers() {
-        return this.http.get('api/User/Index');
+        return this.http.get('/User/Index');
     }
 
     /**
@@ -54,6 +53,6 @@ export class UserService {
      * @description It will delete user with the specified id from the database
      */
     deleteUser(id) {
-        return this.http.delete('api/User/Delete/' + id);
+        return this.http.delete('/User/Delete/' + id);
     }
 }
