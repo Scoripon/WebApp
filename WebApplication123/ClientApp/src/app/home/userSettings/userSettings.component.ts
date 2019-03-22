@@ -29,8 +29,8 @@ export class UserSettingsComponent implements OnInit {
         );
     }
 
-    deleteUser(id) {
-        this.userService.deleteUser(id).subscribe(
+    deleteUser(userID: number): void {
+        this.userService.deleteUser(userID).subscribe(
             data => {
                 console.log('User deleted!', data);
                 this.fetchUsers();
@@ -39,4 +39,5 @@ export class UserSettingsComponent implements OnInit {
         );
     }
 
+    openEditForm(userID: number): void {}
 }

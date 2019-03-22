@@ -1,29 +1,36 @@
-<h2 class="welcome">Welcome to users settings!</h2>
-<section class="users-table">
-    <table>
-        <thead>
-            <tr>
-                <th>Number</th>
-                <th>Type</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of allUsers; let i = index;">
-                <td>{{ i + 1}}</td>
-                <td>{{ user.type }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.id_user }} </td>
-                <button (click)="deleteUser(user.id_user)"> - Delete</button>
-            </tr>
-        </tbody>
-    </table>
-</section>
+<div class="settings-section">
+    <h2 class="welcome">Welcome to users settings!</h2>
+    <section class="users-table">
+        <table>
+            <thead>
+                <tr class="title-row">
+                    <th >No</th>
+                    <th>Type</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="single-user" *ngFor="let user of allUsers; let i = index;">
+                    <td>{{ i + 1}}</td>
+                    <td>{{ user.type }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.id_user }}</td>
+                    <td>
+                        <button class="delete-btn" (click)="deleteUser(user.id_user)">Delete</button>
+                        <button class="edit-btn" (click)="openEditForm(user.id_user)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
 <button routerLink="/home">Back to home</button>
