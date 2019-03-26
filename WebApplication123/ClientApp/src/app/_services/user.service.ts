@@ -55,4 +55,16 @@ export class UserService {
     deleteUser(id) {
         return this.http.delete('/User/Delete/' + id);
     }
+
+
+    /**
+     * @name Login
+     * @param username User username
+     * @param password User password
+     * @description It will delete user with the specified id from the database
+     */
+    login(username,password) {
+        return this.http.get('/User/Login/' + username,password)
+    }
+
 }
