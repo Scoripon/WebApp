@@ -46,5 +46,12 @@ namespace WebApplication123.Controllers
         {
             return objUser.DeleteUser(id);
         }
+
+        [HttpGet]
+        [Route("/User/Login/{username}/{password}")]
+        public User Login(string username, string password)
+        {
+            return objUser.Login(username,password);
+        }
     }
 }

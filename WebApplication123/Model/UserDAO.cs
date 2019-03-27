@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApplication123.Model
 {
@@ -11,12 +10,12 @@ namespace WebApplication123.Model
     {
         private const string connectionString = @"Data Source=(local)\LAZARSQL;Initial Catalog=PayMeApp;Integrated Security = True;";
         private const string defaultUser = "w";
+        private List<User> users = new List<User>();
         //To View all users details
         public IEnumerable<User> GetAllUsers()
         {
             try
             {
-                List<User> users = new List<User>();
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     SqlCommand cmd = new SqlCommand("spGetAllUsers", con);
@@ -26,12 +25,12 @@ namespace WebApplication123.Model
                     while (rdr.Read())
                     {
                         User user = new User();
-                        user.id_user = Convert.ToInt32(rdr["id_user"]);
-                        user.firstname = rdr["firstname"].ToString();
-                        user.lastname = rdr["lastname"].ToString();
-                        user.username = rdr["username"].ToString();
-                        user.password = rdr["password"].ToString();
-                        user.type = rdr["type"].ToString();
+                        user.Id_user = Convert.ToInt32(rdr["id_user"]);
+                        user.Firstname = rdr["firstname"].ToString();
+                        user.Lastname = rdr["lastname"].ToString();
+                        user.Username = rdr["username"].ToString();
+                        user.Password = rdr["password"].ToString();
+                        user.Type = rdr["type"].ToString();
                         users.Add(user);
                     }
                     con.Close();
@@ -43,6 +42,34 @@ namespace WebApplication123.Model
                 throw;
             }
         }
+
+        // TO - DO 
+        // zameniti GetAllUsers sa procedurom koja ce vratiti usera.
+        // sada radi kao idiot.
+        // u slucaju da ne postoji username i password, 
+        // vraca usera sa null vrednostima, iliti praznog usera.
+
+        internal User Login(string username, string password)
+        {
+            try
+            {
+                GetAllUsers();
+               
+                User user = new User();
+                var selectedUser = users.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+                if(selectedUser != null)
+                {
+                    user = selectedUser;
+                }
+                return user;
+                }
+            catch
+            {
+                throw;
+            }
+
+        }
+
         //To Add new user record 
         public int AddUser(User user)
         {
@@ -52,10 +79,10 @@ namespace WebApplication123.Model
                 {
                     SqlCommand cmd = new SqlCommand("spAddUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Firstname", user.firstname);
-                    cmd.Parameters.AddWithValue("@Lastname", user.lastname);
-                    cmd.Parameters.AddWithValue("@Username", user.username);
-                    cmd.Parameters.AddWithValue("@Password", user.password);
+                    cmd.Parameters.AddWithValue("@Firstname", user.Firstname);
+                    cmd.Parameters.AddWithValue("@Lastname", user.Lastname);
+                    cmd.Parameters.AddWithValue("@Username", user.Username);
+                    cmd.Parameters.AddWithValue("@Password", user.Password);
                     cmd.Parameters.AddWithValue("@Type", defaultUser);
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -77,11 +104,11 @@ namespace WebApplication123.Model
                 {
                     SqlCommand cmd = new SqlCommand("spUpdateUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Firstname", user.firstname);
-                    cmd.Parameters.AddWithValue("@Lastname", user.lastname);
-                    cmd.Parameters.AddWithValue("@Username", user.username);
-                    cmd.Parameters.AddWithValue("@Password", user.password);
-                    cmd.Parameters.AddWithValue("@Type", user.type);
+                    cmd.Parameters.AddWithValue("@Firstname", user.Firstname);
+                    cmd.Parameters.AddWithValue("@Lastname", user.Lastname);
+                    cmd.Parameters.AddWithValue("@Username", user.Username);
+                    cmd.Parameters.AddWithValue("@Password", user.Password);
+                    cmd.Parameters.AddWithValue("@Type", user.Type);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -107,12 +134,12 @@ namespace WebApplication123.Model
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        user.id_user = Convert.ToInt32(rdr["id_user"]);
-                        user.firstname = rdr["firstname"].ToString();
-                        user.lastname = rdr["lastname"].ToString();
-                        user.username = rdr["username"].ToString();
-                        user.password = rdr["password"].ToString();
-                        user.type = rdr["type"].ToString();
+                        user.Id_user = Convert.ToInt32(rdr["id_user"]);
+                        user.Firstname = rdr["firstname"].ToString();
+                        user.Lastname = rdr["lastname"].ToString();
+                        user.Username = rdr["username"].ToString();
+                        user.Password = rdr["password"].ToString();
+                        user.Type = rdr["type"].ToString();
                     }
                 }
                 return user;
