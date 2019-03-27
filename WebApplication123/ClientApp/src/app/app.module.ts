@@ -14,13 +14,15 @@ import { UserSettingsComponent } from './home/userSettings/userSettings.componen
 
 // Services
 import { UserService } from './_services/user.service';
+import { LoginComponent } from './login/login.component';
 
 // Routes setup
 const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'settings', component: UserSettingsComponent },
-  { path: '', component: RegisterComponent }
+  { path: '', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     AppComponent,
     RegisterComponent,
     HomeComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
