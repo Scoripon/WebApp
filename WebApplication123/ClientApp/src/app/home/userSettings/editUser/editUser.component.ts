@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomValidators } from '../_helpers/custom-validators';
-import { UserService } from '../_services/user.service';
-import { User } from '../_models/user';
-
+import { CustomValidators } from '../../../_helpers/custom-validators';
+import { UserService } from '../../../_services/user.service';
+import { User } from '../../../_models/user';
 
 @Component({
-// tslint:disable-next-line: component-selector
-  selector: 'register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'edit-user',
+  templateUrl: './editUser.component.html',
+  styleUrls: ['./editUser.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class EditUserComponent implements OnInit {
 
     // Setup Form
-    registerForm: FormGroup;
+    editForm: FormGroup;
     submitted = false;
+
+    @Input() userToEdit: any;
+    @Output() userEdited = new EventEmitter<boolean>();
 
     constructor(
         private formBuilder: FormBuilder,
@@ -25,18 +26,18 @@ export class RegisterComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.createSignupForm();
+        this.createEditForm();
     }
 
     /**
-     * @name createSignupForm
+     * @name createEditForm
      * @description It will create register form and setup basic validation
      */
-    createSignupForm() {
-        this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
+    createEditForm() {
+        this.editForm = this.formBuilder.group({
+            firstName: [this.userToEdit.firstname, Validators.required],
+            lastName: [this.userToEdit.lastname, Validators.required],
+            username: [this.userToEdit.username, Validators.required],
             password: ['',  Validators.compose([
                 // 1. Password Field is Required
                 Validators.required,
@@ -47,40 +48,42 @@ export class RegisterComponent implements OnInit {
                 // 4. Has a minimum length of 8 characters
                 Validators.minLength(8)])
             ],
-            confirmPassword: ['', Validators.required]
+            confirmPassword: ['', Validators.required],
+            type: ['', Validators.required]
         });
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
+    get f() { return this.editForm.controls; }
 
     /**
      * @name submit
-     * @description If validation pass, it will send user details to the backend API
-     * and redirect to login page
+     * @description If
      */
     submit() {
         this.submitted = true;
         const arePasswordsEqual: boolean = (this.f.confirmPassword.value === this.f.password.value);
 
-        if (this.registerForm.invalid || !arePasswordsEqual) {
+        if (this.editForm.invalid || !arePasswordsEqual) {
             return;
         }
 
         // Create User object
-        const user: User = {
+        const user = {
+            id_user: this.userToEdit.id_user,
             firstName: this.f.firstName.value,
             lastName: this.f.lastName.value,
             username: this.f.username.value,
             password: this.f.password.value,
-            type: null // for now until we add type to register form
+            type: this.f.type.value
         };
 
-        this.userService.registerUser(user).subscribe(
+        this.userService.editUser(user).subscribe(
             data => {
-                console.log(data);
+                console.log('USER EDITED', data);
+                this.userEdited.emit(true);
                 // this.alertService.success('Registration successful', true);
-                this.router.navigate(['/login']);
+                // this.router.navigate(['/login']);
             },
             error => {
                 console.log(error);
@@ -88,4 +91,9 @@ export class RegisterComponent implements OnInit {
             }
         );
     }
+
+    cancel() {
+        this.userEdited.emit(false);
+    }
+
 }

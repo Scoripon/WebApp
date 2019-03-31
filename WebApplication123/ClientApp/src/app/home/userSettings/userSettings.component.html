@@ -1,7 +1,17 @@
 <div class="settings-section">
-    <h2 class="welcome">Welcome to users settings!</h2>
-    <section class="users-table">
-        <table>
+    <section class="left-section">
+        <button class="back-btn" routerLink="/home">Back to home</button>
+        <h2 class="welcome">Welcome (user name)!</h2>
+        <nav>
+            <ul>
+                <li>Edit user</li>
+                <li>Shift score</li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="right-section">
+        <table class="users-table"  *ngIf="!openEdit">
             <thead>
                 <tr class="title-row">
                     <th >No</th>
@@ -25,12 +35,11 @@
                     <td>{{ user.id_user }}</td>
                     <td>
                         <button class="delete-btn" (click)="deleteUser(user.id_user)">Delete</button>
-                        <button class="edit-btn" (click)="openEditForm(user.id_user)">Edit</button>
+                        <button class="edit-btn" (click)="openEditForm(user)">Edit</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <edit-user *ngIf="openEdit" [userToEdit]="selectedUser" (userEdited)="onUserEdited($event)"></edit-user>
     </section>
 </div>
-
-<button routerLink="/home">Back to home</button>

@@ -8,7 +8,7 @@ namespace WebApplication123.Model
 {
     public class UserDAO
     {
-        private const string connectionString = @"Data Source=(local)\LAZARSQL;Initial Catalog=PayMeApp;Integrated Security = True;";
+        private const string connectionString = @"Data Source=(local)\BOKISQL;Initial Catalog=PayMeApp;Integrated Security = True;";
         private const string defaultUser = "w";
         private List<User> users = new List<User>();
         //To View all users details
@@ -104,6 +104,7 @@ namespace WebApplication123.Model
                 {
                     SqlCommand cmd = new SqlCommand("spUpdateUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id_user", user.Id_user);
                     cmd.Parameters.AddWithValue("@Firstname", user.Firstname);
                     cmd.Parameters.AddWithValue("@Lastname", user.Lastname);
                     cmd.Parameters.AddWithValue("@Username", user.Username);

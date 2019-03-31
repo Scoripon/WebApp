@@ -11,10 +11,14 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { UserSettingsComponent } from './home/userSettings/userSettings.component';
+import { EditUserComponent } from './home/userSettings/editUser/editUser.component';
+import { LoginComponent } from './login/login.component';
 
 // Services
 import { UserService } from './_services/user.service';
-import { LoginComponent } from './login/login.component';
+import { UserAuthenticationService } from './_services/user-authentication.service';
+import { AlertService } from './_services/alert.service';
+
 
 // Routes setup
 const appRoutes: Routes = [
@@ -31,7 +35,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     UserSettingsComponent,
-    LoginComponent
+    LoginComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService],
+  // Ovde se registruju servisi
+  providers: [UserService, UserAuthenticationService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

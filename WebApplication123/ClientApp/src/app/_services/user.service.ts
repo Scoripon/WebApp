@@ -23,10 +23,10 @@ export class UserService {
 
     /**
      * @name editUser
-     * @param user User object type of '_models/user' with edited data
+     * @param user User object with edited data
      * @description It will send edited User object to the backend API, and update the user
      */
-    editUser(user: User) {
+    editUser(user) {
         return this.http.put('/User/Edit', user);
     }
 
@@ -61,10 +61,10 @@ export class UserService {
      * @name Login
      * @param username User username
      * @param password User password
-     * @description It will delete user with the specified id from the database
+     * @description It will send username and password to the backend API
      */
-    login(username,password) {
-        return this.http.get(`/User/Login/` + username + password);
+    login(username, password) {
+        return this.http.get('/User/Login/' + username + '/' + password);
     }
 
 }

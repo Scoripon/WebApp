@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
+import { User } from 'src/app/_models/user';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -10,6 +11,8 @@ import { UserService } from 'src/app/_services/user.service';
 export class UserSettingsComponent implements OnInit {
 
     allUsers: any;
+    selectedUser: any;
+    openEdit: boolean = false;
 
     constructor(
         private userService: UserService
@@ -39,5 +42,16 @@ export class UserSettingsComponent implements OnInit {
         );
     }
 
-    openEditForm(userID: number): void {}
+    openEditForm(user): void {
+        this.openEdit = true;
+        this.selectedUser = user;
+    }
+
+    onUserEdited(event: boolean) {
+
+        if (event) {
+            this.fetchUsers();
+        }
+        this.openEdit = false;
+    }
 }

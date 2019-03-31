@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   get f() { return this.loginForm.controls; }
-   
+
   onSubmit(){
     this.submitted = true;
 
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['/login']);
+        //   this.router.navigate(['/login']); --> Ovo je visak
           this.router.navigate(['/home']);
         },
         error => {
@@ -71,7 +71,6 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         });
 
-        
   }
 }
 

@@ -1,6 +1,5 @@
-<form class="register-form" [formGroup]="registerForm" (ngSubmit)="submit()">
-    <h2 class="title">Create Account</h2>
-    <div class="info">Please fill in this form to create an account!</div>
+<form class="edit-form" [formGroup]="editForm" (ngSubmit)="submit()">
+    <h2 class="title">Edit user data</h2>
 
     <div class="form-group">
         <input type="text" class="form-control" formControlName="firstName" placeholder="First name">
@@ -31,12 +30,17 @@
         <div class="error" [hidden]="(f['confirmPassword'].value === f['password'].value) || !submitted">Passwords didn't match.</div>
     </div>
 
-    <input type="submit" class="sign-up" value="Sign Up">
-
-    <div class="redirect-to-login">
-        You allready have an account?
-        <div class="link">
-            <a routerLink="/login">Log in</a>
+    <div  class="form-group">
+        <input type="radio" class="radio-btn"  value="Admin" formControlName="type">
+        <label for="admin" class="label"> Admin </label>
+        <input type="radio" class="radio-btn"  value="Waiter" formControlName="type">
+        <label for="waiter" class="label"> Waiter </label>
+        <div class="error" [hidden]="!f.type.errors?.required || !submitted">
+            You must select type of a user
         </div>
     </div>
+
+    <input type="submit" class="edit" value="Edit">
+    <input type="button" class="edit" (click)="cancel()" value="Cancel">
+
 </form>
