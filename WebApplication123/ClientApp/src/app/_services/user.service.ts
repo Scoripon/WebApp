@@ -64,7 +64,7 @@ export class UserService {
      * @description It will delete user with the specified id from the database
      */
     login(username,password) {
-        return this.http.get('/User/Login/' + username,password)
+        return this.http.get(`/User/Login/` + username + password);
     }
 
 }

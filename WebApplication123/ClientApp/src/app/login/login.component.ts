@@ -4,9 +4,9 @@ import { CustomValidators } from '../_helpers/custom-validators';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
+
 import { UserAuthenticationService } from '../_services/user-authentication.service';
 import { AlertService } from '../_services/alert.service';
-import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-login',
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   get f() { return this.loginForm.controls; }
-
+   
   onSubmit(){
     this.submitted = true;
 
@@ -58,11 +58,13 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authentication.login(this.f.username.value, this.f.password.value)
+    this.authentication.login( this.f.username.value, this.f.password.value )
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          console.log(data);
+          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
         },
         error => {
           this.alertService.error(error);
