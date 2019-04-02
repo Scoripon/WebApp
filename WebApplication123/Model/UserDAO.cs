@@ -8,7 +8,6 @@ namespace WebApplication123.Model
 {
     public class UserDAO
     {
-        private const string connectionString = @"Data Source=(local)\BOKISQL;Initial Catalog=PayMeApp;Integrated Security = True;";
         private const string defaultUser = "w";
         private List<User> users = new List<User>();
         //To View all users details

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 export class UserAuthenticationService {
     constructor(private http: HttpClient) { }
 
-    login(username: string, password: string) {
+    login(username, password) {
         // Poslati post request na odredjeni API
         return this.http.post<any>(`/User/Login/${username}/${password}`, { username: username, password: password })
             .pipe(map(user => {

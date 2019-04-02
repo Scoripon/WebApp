@@ -12,7 +12,7 @@ using System.Web.Http.Cors;
 namespace WebApplication123.Controllers
 {
     [Route("api/[controller]")]
-    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*",SupportsCredentials = true)]
+    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = true)]
     public class UserController : Controller
     {
         UserDAO objUser = new UserDAO();
@@ -47,11 +47,17 @@ namespace WebApplication123.Controllers
             return objUser.DeleteUser(id);
         }
 
+        //[HttpPost]
+        //[Route("/User/Login/{username}/{password}")]
+        //public User Login(string username, string password)
+        //{
+        //    return objUser.Login(username,password);
+        //}
         [HttpPost]
         [Route("/User/Login/{username}/{password}")]
         public User Login(string username, string password)
         {
-            return objUser.Login(username,password);
+            return objUser.Login(username, password);
         }
     }
 }
