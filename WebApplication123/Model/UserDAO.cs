@@ -60,7 +60,9 @@ namespace WebApplication123.Model
                 {
                     user = selectedUser;
                 }
-                return user;
+                selectedUser = selectedUser != null ? selectedUser : null;
+
+                return selectedUser;
                 }
             catch
             {
