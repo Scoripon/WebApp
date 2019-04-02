@@ -64,7 +64,7 @@ export class UserService {
      * @description It will send username and password to the backend API
      */
     login(username, password) {
-        return this.http.get('/User/Login/' + username + '/' + password);
+        return this.http.post('/User/Login/' + username, password);
     }
 
 }

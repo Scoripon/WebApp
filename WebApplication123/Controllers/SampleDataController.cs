@@ -47,7 +47,7 @@ namespace WebApplication123.Controllers
             return objUser.DeleteUser(id);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/User/Login/{username}/{password}")]
         public User Login(string username, string password)
         {
