@@ -8,14 +8,16 @@ namespace WebApplication123.Model
 {
     public class UserDAO
     {
+        private const string connectionString = @"Data Source=(local)\LAZARSQL;Initial Catalog=PayMeApp;Integrated Security = True;";
         private const string defaultUser = "w";
+        SqlConnection con = new SqlConnection(connectionString);
         private List<User> users = new List<User>();
-        //To View all users details
+
         public IEnumerable<User> GetAllUsers()
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(connectionString))
+                using (con)
                 {
                     SqlCommand cmd = new SqlCommand("spGetAllUsers", con);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -42,41 +44,51 @@ namespace WebApplication123.Model
             }
         }
 
-        // TO - DO 
-        // zameniti GetAllUsers sa procedurom koja ce vratiti usera.
-        // sada radi kao idiot.
-        // u slucaju da ne postoji username i password, 
-        // vraca usera sa null vrednostima, iliti praznog usera.
-
         internal User Login(string username, string password)
         {
             try
             {
-                GetAllUsers();
-               
                 User user = new User();
-                var selectedUser = users.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
-                if(selectedUser != null)
+
+                using (con)
                 {
-                    user = selectedUser;
-                }
-                selectedUser = selectedUser != null ? selectedUser : null;
+                    con.Open();
+                    string sqlQuery = "SELECT * FROM Users WHERE username= '" + username + "' and password= '" + password + "';";
+                    SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                    SqlDataReader rdr = cmd.ExecuteReader();
 
-                return selectedUser;
+                    if (rdr.Read())
+                    {
+                        user.Id_user = Convert.ToInt32(rdr["id_user"]);
+                        user.Firstname = rdr["firstname"].ToString();
+                        user.Lastname = rdr["lastname"].ToString();
+                        user.Username = rdr["username"].ToString();
+                        user.Password = rdr["password"].ToString();
+                        user.Type = rdr["type"].ToString();
+                    }
+                    else
+                        user = null;
+
+                    rdr.Close();
                 }
-            catch
-            {
-                throw;
+                return user;
+                
             }
-
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
-        //To Add new user record 
         public int AddUser(User user)
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(connectionString))
+                using (con)
                 {
                     SqlCommand cmd = new SqlCommand("spAddUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -87,16 +99,19 @@ namespace WebApplication123.Model
                     cmd.Parameters.AddWithValue("@Type", defaultUser);
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    con.Close();
                 }
                 return 1;
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
             }
         }
-        //To Update the records of a particluar user
+
         public int UpdateUser(User user)
         {
             try
@@ -130,10 +145,12 @@ namespace WebApplication123.Model
                 User user = new User();
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
+                    con.Open();
+
                     string sqlQuery = "SELECT * FROM Users WHERE id_user= " + id_user;
                     SqlCommand cmd = new SqlCommand(sqlQuery, con);
-                    con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
+
                     while (rdr.Read())
                     {
                         user.Id_user = Convert.ToInt32(rdr["id_user"]);
@@ -142,8 +159,11 @@ namespace WebApplication123.Model
                         user.Username = rdr["username"].ToString();
                         user.Password = rdr["password"].ToString();
                         user.Type = rdr["type"].ToString();
+
+                        con.Close();
                     }
                 }
+                
                 return user;
             }
             catch
