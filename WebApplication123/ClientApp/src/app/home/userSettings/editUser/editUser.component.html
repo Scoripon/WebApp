@@ -19,8 +19,8 @@
     <div class="form-group">
         <input type="password" class="form-control" formControlName="password" placeholder="Password">
         <div class="error" [hidden]="!f.password.errors?.required || !submitted">Please enter your password.</div>
-        <div class="error" [hidden]="(!f.password.errors?.minlength && !f.password.hasError('hasNumber') && !f.password.hasError('hasCapitalCase')) || !submitted">
-            Password must have at least 8 characters, one number and one capital letter.
+        <div class="error" [hidden]="(!f.password.errors?.minlength) || !submitted">
+            Password must have at least 4 characters.
         </div>
     </div>
 
@@ -31,7 +31,7 @@
     </div>
 
     <div  class="form-group">
-        <input type="radio" class="radio-btn"  value="Admin" formControlName="type">
+        <input type="radio" class="radio-btn" value="Admin" formControlName="type">
         <label for="admin" class="label"> Admin </label>
         <input type="radio" class="radio-btn"  value="Waiter" formControlName="type">
         <label for="waiter" class="label"> Waiter </label>

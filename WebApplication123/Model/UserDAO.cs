@@ -34,13 +34,16 @@ namespace WebApplication123.Model
                         user.Type = rdr["type"].ToString();
                         users.Add(user);
                     }
-                    con.Close();
                 }
                 return users;
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
