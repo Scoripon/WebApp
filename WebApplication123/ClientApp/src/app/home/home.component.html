@@ -2,8 +2,12 @@
     <section class="nav-container">
         <nav>
             <ul>
-                <li class="">
-                    <a routerLink="/home">LOGO</a>
+                <li class="user-info">
+                    {{currentUser['firstname'] }}
+                    {{ currentUser['lastname']}}
+                </li>
+                <li >
+                    <a (click)="logout()">Logout</a>
                 </li>
                 <li>
                     <!-- target="_blank" means open in new window -->

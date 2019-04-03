@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAuthenticationService } from '../_services/user-authentication.service';
+import { Router } from '@angular/router';
+import { User } from '../_models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -8,9 +12,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+    currentUser: User;
+    currentUserSubscription: Subscription;
 
-  ngOnInit() {
-  }
+    constructor(
+        private authentication: UserAuthenticationService,
+        private router: Router
+    ) {
+        this.currentUserSubscription = this.authentication.currentUser.subscribe(user => {
+            this.currentUser = user;
+        });
+    }
 
+    ngOnInit() {
+    }
+
+    logout() {
+        this.authentication.logout();
+        this.router.navigate(['/login']);
+    }
 }

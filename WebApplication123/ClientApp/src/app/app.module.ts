@@ -18,15 +18,18 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './_services/user.service';
 import { UserAuthenticationService } from './_services/user-authentication.service';
 import { AlertService } from './_services/alert.service';
-
+import { AuthGuard } from './_guards/auth.guard';
 
 // Routes setup
 const appRoutes: Routes = [
-  { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'settings', component: UserSettingsComponent },
-  { path: '', component: RegisterComponent },
-  { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    // Routes that are protected
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'settings', component: UserSettingsComponent, canActivate: [AuthGuard] },
+
+    // otherwise redirect to login
+    { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
@@ -46,7 +49,7 @@ const appRoutes: Routes = [
     FormsModule
   ],
   // Ovde se registruju servisi
-  providers: [UserService, UserAuthenticationService, AlertService],
+  providers: [UserService, UserAuthenticationService, AlertService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

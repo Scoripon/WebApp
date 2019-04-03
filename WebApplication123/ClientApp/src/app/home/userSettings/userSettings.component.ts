@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/user';
+import { Subscription } from 'rxjs';
+import { UserAuthenticationService } from 'src/app/_services/user-authentication.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -13,10 +15,17 @@ export class UserSettingsComponent implements OnInit {
     allUsers: any;
     selectedUser: any;
     openEdit: boolean = false;
+    currentUser: User;
+    currentUserSubscription: Subscription;
 
     constructor(
-        private userService: UserService
-    ) { }
+        private userService: UserService,
+        private authentication: UserAuthenticationService,
+    ) {
+        this.currentUserSubscription = this.authentication.currentUser.subscribe(user => {
+            this.currentUser = user;
+        });
+    }
 
     ngOnInit() {
         this.fetchUsers();

@@ -17,7 +17,7 @@ export class UserService {
      * @param user User object type of '_models/user' with all data needed for registration
      * @description It will send User object to the backend API
      */
-    registerUser(user: User) {
+    registerUser(user) {
         return this.http.post('/User/Create', user);
     }
 
@@ -26,7 +26,7 @@ export class UserService {
      * @param user User object with edited data
      * @description It will send edited User object to the backend API, and update the user
      */
-    editUser(user) {
+    editUser(user: User) {
         return this.http.put('/User/Edit', user);
     }
 

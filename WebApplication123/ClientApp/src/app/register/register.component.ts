@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 import { CustomValidators } from '../_helpers/custom-validators';
 import { UserService } from '../_services/user.service';
-import { User } from '../_models/user';
+import { UserAuthenticationService } from '../_services/user-authentication.service';
 
 
 @Component({
@@ -21,8 +21,14 @@ export class RegisterComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
+        private authentication: UserAuthenticationService,
         private userService: UserService
-    ) { }
+    ) {
+        // redirect to home if already logged in
+        if (this.authentication.currentUserValue) {
+            this.router.navigate(['/home']);
+        }
+    }
 
     ngOnInit() {
         this.createSignupForm();
@@ -69,7 +75,7 @@ export class RegisterComponent implements OnInit {
         }
 
         // Create User object
-        const user: User = {
+        const user = {
             firstName: this.f.firstName.value,
             lastName: this.f.lastName.value,
             username: this.f.username.value,

@@ -60,7 +60,7 @@ export class EditUserComponent implements OnInit {
         }
 
         // Create User object
-        const user = {
+        const user: User = {
             id_user: this.userToEdit.id_user,
             firstName: this.f.firstName.value,
             lastName: this.f.lastName.value,

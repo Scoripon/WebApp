@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { CustomValidators } from '../_helpers/custom-validators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 
@@ -20,16 +19,25 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   authFailed: boolean = false;
+  returnUrl: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private authentication: UserAuthenticationService,
     private router: Router,
+    private route: ActivatedRoute,
     private alertService: AlertService
-    ) {}
+    ) {
+        // redirect to home if already logged in
+        if (this.authentication.currentUserValue) {
+            this.router.navigate(['/home']);
+        }
+    }
 
   ngOnInit() {
     this.createLoginForm();
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   createLoginForm() {

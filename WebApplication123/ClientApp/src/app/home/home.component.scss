@@ -14,11 +14,17 @@
                 li {
                     display: inline-block;
                     padding: 10px;
+
+                    &.user-info {
+                        cursor: default;
+                        float: right;
+                    }
                 }
 
                 a {
                     text-decoration: none !important;
                     color: #001a4d;
+                    cursor: pointer;
 
                     &:hover {
                         color: #66b9f4;
