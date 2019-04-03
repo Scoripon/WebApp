@@ -1,9 +1,9 @@
 <form [formGroup]='loginForm' class="register-form" (ngSubmit)='onSubmit()'>
     <h2 class="title">Welcome Back!</h2>
     <div class="info">Nice to see you again!</div>
+    <div class="auth-error" [hidden]="!authFailed">Wrong username or password!</div>
 
     <div class="form-group">
-      <!-- <input type="text" class="form-control" formControlName="userName" placeholder="Username"> U typescriptu je definisan username -->
       <input type="text" class="form-control" formControlName="username" placeholder="Username">
       <div class="error" [hidden]="!f.username.errors || !submitted">Please enter your username.</div>
     </div>
@@ -18,7 +18,6 @@
     <div class="redirect-to-sign-up">
       You allready have an account?
       <div class="link">
-        <!-- <a href='register'>Sign Up</a> Umesto href ovde koristimo routerLink -->
         <a  routerLink="/register">Sign Up</a>
       </div>
     </div>

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  authFailed: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,29 +32,19 @@ export class LoginComponent implements OnInit {
     this.createLoginForm();
   }
 
-  createLoginForm(){
+  createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-        password: ['', Validators.required]
-        //[
-        //// 1. Password Field is Required
-        //Validators.required,
-        //// 2. check whether the entered password has a number
-        //CustomValidators.patternValidator(/\d/, { hasNumber: true }),
-        //// 3. check whether the entered password has upper case letter
-        //CustomValidators.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
-        //// 4. Has a minimum length of 8 characters
-        //Validators.minLength(8)])
-      
+        username: ['', Validators.required],
+        password: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
     });
   }
 
   get f() { return this.loginForm.controls; }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
 
-    if(this.loginForm.invalid){
+    if (this.loginForm.invalid){
       return;
     }
 
@@ -63,9 +53,12 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+            if (data) {
+                this.router.navigate(['/home']);
+            } else {
+                this.authFailed = true;
+            }
           console.log(data);
-        //   this.router.navigate(['/login']); --> Ovo je visak
-          this.router.navigate(['/home']);
         },
         error => {
           this.alertService.error(error);

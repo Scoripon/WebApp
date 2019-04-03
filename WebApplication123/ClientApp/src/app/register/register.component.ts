@@ -37,16 +37,17 @@ export class RegisterComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.required],
-            password: ['',  Validators.compose([
-                // 1. Password Field is Required
-                Validators.required,
-                // 2. check whether the entered password has a number
-                CustomValidators.patternValidator(/\d/, { hasNumber: true }),
-                // 3. check whether the entered password has upper case letter
-                CustomValidators.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
-                // 4. Has a minimum length of 8 characters
-                Validators.minLength(8)])
-            ],
+            password: ['', Validators.required, Validators.minLength(4)],
+            // password: ['',  Validators.compose([
+            //     // 1. Password Field is Required
+            //     Validators.required,
+            //     // 2. check whether the entered password has a number
+            //     CustomValidators.patternValidator(/\d/, { hasNumber: true }),
+            //     // 3. check whether the entered password has upper case letter
+            //     CustomValidators.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
+            //     // 4. Has a minimum length of 8 characters
+            //     Validators.minLength(8)])
+            // ],
             confirmPassword: ['', Validators.required]
         });
     }
