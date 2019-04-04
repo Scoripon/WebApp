@@ -20,8 +20,8 @@
     <div class="form-group">
         <input type="password" class="form-control" formControlName="password" placeholder="Password">
         <div class="error" [hidden]="!f.password.errors?.required || !submitted">Please enter your password.</div>
-        <div class="error" [hidden]="(!f.password.errors?.minlength && !f.password.hasError('hasNumber') && !f.password.hasError('hasCapitalCase')) || !submitted">
-            Password must have at least 8 characters, one number and one capital letter.
+        <div class="error" [hidden]="!f.password.errors?.minlength  || !submitted">
+            Password must have at least 4 characters.
         </div>
     </div>
 
