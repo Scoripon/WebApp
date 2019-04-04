@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/fontello/css/restoran.css";
 
+@font-face {
+    font-family: 'fontello';
+    src: url('/src/assets/fontello/font/restoran.eot?32956240');
+    src: url('/src/assets/fontello/font/restoran.eot?32956240#iefix') format('embedded-opentype'),
+         url('/src/assets/fontello/font/restoran.woff2?32956240') format('woff2'),
+         url('/src/assets/fontello/font/restoran.woff?32956240') format('woff'),
+         url('/src/assets/fontello/font/restoran.ttf?32956240') format('truetype'),
+         url('/src/assets/fontello/font/restoran.svg?32956240#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
 // Set all input placeholders to disappear on focus
 input {
     /* WebKit browsers */

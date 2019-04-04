@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
             } else {
                 this.authFailed = true;
             }
-          console.log(data);
+            console.log(data);
         },
         error => {
           this.alertService.error(error);

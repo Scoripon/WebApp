@@ -56,15 +56,4 @@ export class UserService {
         return this.http.delete('/User/Delete/' + id);
     }
 
-
-    /**
-     * @name Login
-     * @param username User username
-     * @param password User password
-     * @description It will send username and password to the backend API
-     */
-    login(username, password) {
-        return this.http.post('/User/Login/' + username, password);
-    }
-
 }

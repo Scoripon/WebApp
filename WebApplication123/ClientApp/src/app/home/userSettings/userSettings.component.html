@@ -1,6 +1,8 @@
 <div class="settings-section">
     <section class="left-section">
-        <button class="back-btn" routerLink="/home">Back to home</button>
+        <div class="user-img">
+            <img src="../../../assets/imgs/user.png"/>
+        </div>
         <h2 class="welcome">Welcome {{currentUser.username}}!</h2>
         <nav>
             <ul>
@@ -8,6 +10,7 @@
                 <li>Shift score</li>
             </ul>
         </nav>
+        <button class="back-btn" routerLink="/home">Back to home</button>
     </section>
 
     <section class="right-section">
@@ -34,8 +37,8 @@
                     <td>{{ user.password }}</td>
                     <td>{{ user.id_user }}</td>
                     <td>
-                        <button class="delete-btn" (click)="deleteUser(user.id_user)">Delete</button>
-                        <button class="edit-btn" (click)="openEditForm(user)">Edit</button>
+                        <button class="delete-btn" (click)="deleteUser(user.id_user)"><i class="icon-trash"></i></button>
+                        <button class="edit-btn" (click)="openEditForm(user)"><i class="icon-pencil"></i></button>
                     </td>
                 </tr>
             </tbody>

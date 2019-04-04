@@ -4,24 +4,32 @@
     grid-template-columns: 25% 75%;
 
     .left-section {
-        background-color: #66b9f4;
+        background-color: rgb(30, 69, 132);
         opacity: 0.9;
         color: #fff;
         height: 100vh;
+        letter-spacing: 1px;
 
+        .user-img {
+            border: 1px solid rgb(32, 85, 170);
+            background-color: rgb(32, 85, 170);
+            display: table;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 50%;
+        }
         .back-btn {
             margin: auto;
             display: block;
-            margin-top: 10px;
+            margin-top: 100px;
             color: #fff;
-            border-radius: 4px;
             border: none;
-            padding: 4px 8px;
-            background-color: #259DD0;
+            padding: 16px;
+            background-color: rgb(32, 85, 170);
             cursor: pointer;
 
             &:hover {
-                padding: 6px 10px;
+                padding: 18px;
                 background-color: #1B92C5;
             }
         }
@@ -59,6 +67,7 @@
         .users-table {
             border-collapse: collapse;
             margin: auto;
+            width: 90%;
 
             thead {
                 background-color: #66b9f4;
@@ -83,6 +92,7 @@
                     border-bottom: 1px solid #e6ecff;
                     height: 40px;
                     cursor: pointer;
+                    text-align: center;
 
                     td {
                         &:first-child {
@@ -92,20 +102,35 @@
 
                     .delete-btn {
                         margin-left: 14px;
-                        background-color: #ff0000;
-                        color: #fff;
+                        background-color: #fff;
+                        color: #ff0000;
                         border: 1px solid #e60000;
-                        padding: 2px 6px;
+                        padding: 6px;
                         cursor: pointer;
+                        font-size: 18px;
+                        border-radius: 50%;
+
+
+                        &:hover {
+                            background-color: #ff0000;
+                            color: #fff;
+                        }
                     }
 
                     .edit-btn {
-                        background-color: #0066ff;
+                        background-color: #fff;
                         border: 1px solid #005ce6;
-                        padding: 2px 6px;
+                        padding: 6px;
                         margin-left: 8px;
-                        color: #fff;
+                        color: #0066ff;
                         cursor: pointer;
+                        font-size: 18px;
+                        border-radius: 50%;
+
+                        &:hover {
+                            background-color: #0066ff;
+                            color: #fff;
+                        }
                     }
                 }
             }
