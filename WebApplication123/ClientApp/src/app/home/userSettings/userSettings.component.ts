@@ -18,6 +18,11 @@ export class UserSettingsComponent implements OnInit {
     currentUser: User;
     currentUserSubscription: Subscription;
 
+    laletoviAdmini = ['Ajkula', 'Amazon', 'Anus', 'Aki', 'Ana voli Milovana', 'Aladin', 'Almir',
+    'Azdaja', 'Alabaster', 'Al Pacino', 'Aquaman'];
+    laletoviKonobari = ['WWW', 'Woki toki', 'Wawrinka', 'Woponese', 'Wall', 'Wopo', 'Whatsapp',
+    'Wtf', 'Windows', 'Wikipedia', 'Wyoming'];
+
     constructor(
         private userService: UserService,
         private authentication: UserAuthenticationService,
@@ -35,7 +40,17 @@ export class UserSettingsComponent implements OnInit {
         this.userService.getAllUsers().subscribe(
             data => {
                 this.allUsers = data;
+                this.allUsers.forEach( user => {
+                     if (user.type.toLowerCase() === 'a') {
+                        const index = Math.floor(Math.random() * 10);
+                        user.type = this.laletoviAdmini[index];
+                    } else if (user.type.toLowerCase() === 'w') {
+                        const index = Math.floor(Math.random() * 10);
+                        user.type = this.laletoviKonobari[index];
+                    }
+                });
                 this.updateCurrentUser();
+
                 console.log(data);
             },
             error => {}
