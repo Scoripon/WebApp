@@ -1,0 +1,6 @@
+<div class="tables-section">
+    <h2>Choose the table!</h2>
+    <div class="tables-container">
+        <div class="table" *ngFor="let table of tables;" (click)="chooseTable(table)"><label>{{table}}</label></div>
+    </div>
+</div>

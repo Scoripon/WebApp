@@ -35,6 +35,7 @@ export class UserSettingsComponent implements OnInit {
         this.userService.getAllUsers().subscribe(
             data => {
                 this.allUsers = data;
+                this.updateCurrentUser();
                 console.log(data);
             },
             error => {}
@@ -62,5 +63,14 @@ export class UserSettingsComponent implements OnInit {
             this.fetchUsers();
         }
         this.openEdit = false;
+    }
+
+    updateCurrentUser() {
+        this.allUsers.forEach(user => {
+            if (user.id_user === this.currentUser.id_user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.authentication.currentUserSubject.next(user);
+            }
+        });
     }
 }

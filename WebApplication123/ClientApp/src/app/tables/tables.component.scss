@@ -1,0 +1,40 @@
+.tables-section {
+    text-align: center;
+
+    h2 {
+        color: #042251;
+        letter-spacing: 1px;
+    }
+
+    .tables-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 36px;
+        border-bottom: 1px solid #0a3e91;
+        border-right: 1px solid #0a3e91;
+
+        .table {
+            height: 300px;
+            border-top: 1px solid #0a3e91;
+            border-left: 1px solid #0a3e91;
+            background-color: rgb(26, 101, 221);
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(109, 163, 249);
+                font-size: 42px;
+
+                label {
+                    color: #ffff;
+                }
+            }
+
+            label {
+                display: block;
+                margin-top: 114px;
+                cursor: pointer;
+                color: #042251;
+            }
+        }
+    }
+}

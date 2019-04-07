@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
             if (data) {
-                this.router.navigate(['/home']);
+                this.router.navigate(['/tables']);
             } else {
                 this.authFailed = true;
             }
@@ -72,9 +72,5 @@ export class LoginComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
-
   }
 }
-
-
-

@@ -1,12 +1,13 @@
 .main-container {
 
     .nav-container {
+        background-color: rgb(30, 69, 132);
 
         nav {
             padding: 10px;
             box-shadow: -2px 4px 19px -6px #66b9f4;
             font-size: 20px;
-            color: #616a7a;
+            color: #fff;
 
             ul {
                 margin: unset;
@@ -23,7 +24,7 @@
 
                 a {
                     text-decoration: none !important;
-                    color: #001a4d;
+                    color: #fff;
                     cursor: pointer;
 
                     &:hover {

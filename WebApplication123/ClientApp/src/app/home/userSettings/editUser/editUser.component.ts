@@ -40,7 +40,7 @@ export class EditUserComponent implements OnInit {
             username: [this.userToEdit.username, Validators.required],
             password: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
             confirmPassword: ['', Validators.required],
-            type: [this.userToEdit.type, Validators.required]
+            type: ['Admin', Validators.required]
         });
     }
 
@@ -74,7 +74,6 @@ export class EditUserComponent implements OnInit {
                 console.log('USER EDITED', data);
                 this.userEdited.emit(true);
                 // this.alertService.success('Registration successful', true);
-                // this.router.navigate(['/login']);
             },
             error => {
                 console.log(error);

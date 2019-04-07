@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { UserSettingsComponent } from './home/userSettings/userSettings.component';
 import { EditUserComponent } from './home/userSettings/editUser/editUser.component';
 import { LoginComponent } from './login/login.component';
+import { TablesComponent } from './tables/tables.component';
 
 // Services
 import { UserService } from './_services/user.service';
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     // Routes that are protected
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'tables', component: TablesComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: UserSettingsComponent, canActivate: [AuthGuard] },
 
     // otherwise redirect to login
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     HomeComponent,
     UserSettingsComponent,
     LoginComponent,
-    EditUserComponent
+    EditUserComponent,
+    TablesComponent
   ],
   imports: [
     BrowserModule,

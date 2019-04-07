@@ -6,12 +6,18 @@
                     {{currentUser['firstname'] }}
                     {{ currentUser['lastname']}}
                 </li>
+                <li class="user-info">
+                    Selected table is: {{selectedTables[0].tableId }}
+                </li>
                 <li >
                     <a (click)="logout()">Logout</a>
                 </li>
                 <li>
                     <!-- target="_blank" means open in new window -->
-                    <a routerLink="/settings">User settings</a>
+                    <a routerLink="/settings"><i class="icon-users"></i>Settings</a>
+                </li>
+                <li>
+                    <a routerLink="/tables"><i class="icon-food"></i>Tables</a>
                 </li>
             </ul>
         </nav>
