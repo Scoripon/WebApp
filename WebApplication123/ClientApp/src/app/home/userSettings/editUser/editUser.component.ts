@@ -40,7 +40,7 @@ export class EditUserComponent implements OnInit {
             username: [this.userToEdit.username, Validators.required],
             password: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
             confirmPassword: ['', Validators.required],
-            type: ['Admin', Validators.required]
+            type: ['A', Validators.required]
         });
     }
 

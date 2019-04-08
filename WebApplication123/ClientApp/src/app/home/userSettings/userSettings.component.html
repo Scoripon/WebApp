@@ -6,15 +6,16 @@
         <h2 class="welcome">Welcome {{currentUser.username}}!</h2>
         <nav>
             <ul>
-                <li>Edit user</li>
-                <li>Shift score</li>
+                <li (click)="openEditForm(currentUser)">Edit user</li>
+                <li *ngIf="currentUser.type.toLowerCase() === 'a'" (click)="showAdminSettings = true">Admin settings</li>
+                <li (click)="showAdminSettings = false;">Shift score</li>
             </ul>
         </nav>
         <button class="back-btn" routerLink="/home">Back to home</button>
     </section>
 
     <section class="right-section">
-        <table class="users-table"  *ngIf="!openEdit">
+        <table class="users-table" *ngIf="showAdminSettings && (currentUser.type.toLowerCase() === 'a')">
             <thead>
                 <tr class="title-row">
                     <th >No</th>
@@ -30,7 +31,7 @@
             <tbody>
                 <tr class="single-user" *ngFor="let user of allUsers; let i = index;">
                     <td>{{ i + 1}}</td>
-                    <td>{{ user.type }}</td>
+                    <td>{{ user.type.toLowerCase() === 'a' ? 'Admin' : 'Waiter' }}</td>
                     <td>{{ user.firstname }}</td>
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.username }}</td>
