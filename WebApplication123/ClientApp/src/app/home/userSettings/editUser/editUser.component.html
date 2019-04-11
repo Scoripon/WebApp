@@ -31,9 +31,9 @@
     </div>
 
     <div  class="form-group">
-        <input type="radio" class="radio-btn" value="Admin" formControlName="type">
+        <input type="radio" class="radio-btn" value="A" formControlName="type">
         <label for="admin" class="label"> Admin </label>
-        <input type="radio" class="radio-btn"  value="Waiter" formControlName="type">
+        <input type="radio" class="radio-btn"  value="W" formControlName="type">
         <label for="waiter" class="label"> Waiter </label>
         <div class="error" [hidden]="!f.type.errors?.required || !submitted">
             You must select type of a user
