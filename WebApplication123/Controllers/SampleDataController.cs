@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication123.DAO;
 using WebApplication123.Model;
-using System.Web.Http.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -51,6 +51,45 @@ namespace WebApplication123.Controllers
         public User Login(string username, string password)
         {
             return objUser.Login(username, password);
+        }
+    }
+    public class ProductCotroller : Controller
+    {
+        ProductDAO objProduct = new ProductDAO();
+
+        [HttpGet]
+        [Route("/Product/Index")]
+        public IEnumerable<Product> Index()
+        {
+            return objProduct.GetAllProducts();
+        }
+
+        [HttpGet]
+        [Route("/Product/Details/{id}")]
+        public Product Details(int id)
+        {
+            return objProduct.GetProduct(id);
+        }
+
+
+        [HttpDelete]
+        [Route("/Product/Delete/{id}")]
+        public int Delete(int id)
+        {
+            return objProduct.DeleteProduct(id);
+        }
+
+        [HttpPost]
+        [Route("/Product/AddProduct")]
+        public int AddProduct([FromBody] Product product)
+        {
+            return objProduct.AddProduct(product);
+        }
+        [HttpPut]
+        [Route("/Product/Edit")]
+        public int Edit([FromBody]Product product)
+        {
+            return objProduct.UpdateProduct(product);
         }
     }
 }

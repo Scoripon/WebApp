@@ -4,15 +4,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace WebApplication123.Model
+namespace WebApplication123.DAO
 {
-    public class UserDAO
+    public class UserDAO : Program
     {
-        private const string connectionString = @"Data Source=(local)\LAZARSQL;Initial Catalog=PayMeApp;Integrated Security = True;";
         private const string defaultUser = "w";
-        SqlConnection con = new SqlConnection(connectionString);
         private List<User> users = new List<User>();
-
+        
         public IEnumerable<User> GetAllUsers()
         {
             try
@@ -163,10 +161,9 @@ namespace WebApplication123.Model
                         user.Password = rdr["password"].ToString();
                         user.Type = rdr["type"].ToString();
 
-                        con.Close();
                     }
+                        con.Close();
                 }
-                
                 return user;
             }
             catch
@@ -174,7 +171,7 @@ namespace WebApplication123.Model
                 throw;
             }
         }
-        //To Delete the record on a particular user
+
         public int DeleteUser(int id_user)
         {
             try
