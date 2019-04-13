@@ -7,7 +7,7 @@
         <nav>
             <ul>
                 <li (click)="openEditForm(currentUser)">Edit user</li>
-                <li *ngIf="currentUser.type.toLowerCase() === 'a'" (click)="showAdminSettings = true">Admin settings</li>
+                <li *ngIf="currentUser.type.toLowerCase() === 'a'" (click)="onAdminSettingsClicked()">Admin settings</li>
                 <li (click)="showAdminSettings = false;">Shift score</li>
             </ul>
         </nav>
@@ -44,6 +44,7 @@
                 </tr>
             </tbody>
         </table>
+
         <edit-user *ngIf="openEdit" [userToEdit]="selectedUser" (userEdited)="onUserEdited($event)"></edit-user>
     </section>
 </div>

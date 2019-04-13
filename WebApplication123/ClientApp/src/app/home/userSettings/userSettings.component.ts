@@ -32,11 +32,15 @@ export class UserSettingsComponent implements OnInit {
         this.fetchUsers();
     }
 
+
+    /**
+     * @name fetchUsers
+     * @description It will fetch all registered users, which will be displayed in users table
+     */
     fetchUsers() {
         this.userService.getAllUsers().subscribe(
             data => {
                 this.allUsers = data;
-                this.updateCurrentUser();
 
                 console.log(data);
             },
@@ -44,7 +48,18 @@ export class UserSettingsComponent implements OnInit {
         );
     }
 
+    /**
+     * @name deleteUser
+     * @param userID Id of user we want to delete
+     * @description It will delete user with the current ID
+     */
     deleteUser(userID: number): void {
+        // First check if user trying to delete yourself
+        if (this.currentUser.id_user === userID) {
+            // TO DO: Use notification service instead of alert
+            return alert('You cannot delete yourself!');
+        }
+
         this.userService.deleteUser(userID).subscribe(
             data => {
                 console.log('User deleted!', data);
@@ -54,26 +69,39 @@ export class UserSettingsComponent implements OnInit {
         );
     }
 
+    /**
+     * @name openEditForm
+     * @param user User data to edit
+     * @description It will show edit form, hide users table and send user data to the edit form
+     */
     openEditForm(user): void {
         this.openEdit = true;
         this.showAdminSettings = false;
         this.selectedUser = user;
     }
 
-    onUserEdited(event: boolean) {
 
-        if (event) {
+    /**
+     * @name onUserEdited
+     * @param user If user update successfully then it's type of User (_models/user.ts) otherwise false
+     * @description Method that will be invoked every time when a user successfully update
+     * or cancel edit form. It will refresh the table data and update the current user
+     */
+    onUserEdited(user) {
+        if (user) {
             this.fetchUsers();
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+            this.authentication.currentUserSubject.next(user);
         }
         this.openEdit = false;
     }
 
-    updateCurrentUser() {
-        this.allUsers.forEach(user => {
-            if (user.id_user === this.currentUser.id_user) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.authentication.currentUserSubject.next(user);
-            }
-        });
+    /**
+     * @name onAdminSettingsClicked
+     * @description It will show users table and hide edit form
+     */
+    onAdminSettingsClicked() {
+        this.showAdminSettings = true;
+        this.openEdit = false;
     }
 }

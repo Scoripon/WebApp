@@ -17,7 +17,7 @@ export class EditUserComponent implements OnInit {
     submitted = false;
 
     @Input() userToEdit: any;
-    @Output() userEdited = new EventEmitter<boolean>();
+    @Output() userEdited = new EventEmitter<Object>();
 
     constructor(
         private formBuilder: FormBuilder,
@@ -40,7 +40,7 @@ export class EditUserComponent implements OnInit {
             username: [this.userToEdit.username, Validators.required],
             password: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
             confirmPassword: ['', Validators.required],
-            type: ['A', Validators.required]
+            type: [this.userToEdit.type.toUpperCase(), Validators.required]
         });
     }
 
@@ -62,8 +62,8 @@ export class EditUserComponent implements OnInit {
         // Create User object
         const user: User = {
             id_user: this.userToEdit.id_user,
-            firstName: this.f.firstName.value,
-            lastName: this.f.lastName.value,
+            firstname: this.f.firstName.value,
+            lastname: this.f.lastName.value,
             username: this.f.username.value,
             password: this.f.password.value,
             type: this.f.type.value
@@ -72,7 +72,7 @@ export class EditUserComponent implements OnInit {
         this.userService.editUser(user).subscribe(
             data => {
                 console.log('USER EDITED', data);
-                this.userEdited.emit(true);
+                this.userEdited.emit(user);
                 // this.alertService.success('Registration successful', true);
             },
             error => {
