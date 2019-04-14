@@ -8,12 +8,12 @@ CREATE TABLE Users (
 	password varchar(50),
 	type varchar(1)
 );
-/*
+
 --select * from Users
-INSERT INTO Korisnik(ime,prezime,username,password,tip)
-	VALUES('Admir','Kashikar','admin','admin','w')
+/*
+INSERT INTO Users(firstname,lastname,username,password,type)
+	VALUES('w','w','w','w','w')
 	
 INSERT INTO Korisnik(ime,prezime,username,password,tip)
 	VALUES('Shljaker','Sljkerko','worker','worker','w')
-*/
-
+	*/

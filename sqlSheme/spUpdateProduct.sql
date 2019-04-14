@@ -5,7 +5,7 @@ Create procedure spUpdateProduct
     @ProductName VARCHAR(30),         
     @Price MONEY,        
     @Quantity INT,        
-    @Type VARCHAR(50),
+    @Category VARCHAR(50),
 	@Details TEXT
 )        
 as        
@@ -14,7 +14,7 @@ begin
    set product_name=@ProductName,        
    price=@Price,        
    quantity=@Quantity,    
-   type = @Type,
+   category = @Category,
    details	= @Details        
    where id_product = @Id_product
 End
