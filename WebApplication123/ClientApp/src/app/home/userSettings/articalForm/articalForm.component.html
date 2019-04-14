@@ -1,0 +1,32 @@
+<form [formGroup]="articalForm" class="artical-form" (ngSubmit)="onSubmit()">
+    <div class="left-section">
+        <div class="form-group">
+            <label class="title">Product name</label>
+            <input type="text" class="form-control" formControlName="productName" placeholder="Product name">
+        </div>
+
+        <div class="form-group">
+            <label class="title">Product category</label>
+            <input type="text" class="form-control" formControlName="productCategory" placeholder="Product category">
+        </div>
+
+        <div class="form-group">
+            <label class="title">Product price</label>
+            <input type="number" class="form-control" formControlName="price" placeholder="Price">
+        </div>
+
+        <div class="form-group">
+            <label class="title">Quantity</label>
+            <input type="number" class="form-control" formControlName="quantity" placeholder="Quantity">
+        </div>
+        <!-- <button class="add-image">Add image</button> -->
+    </div>
+
+    <div class="right-section">
+        <div class="form-group details">
+            <h4>Product details</h4>
+            <textarea class="product-details" rows="4" cols="60" formControlName="productDetails" placeholder="Add product details here"></textarea>
+        </div>
+        <input type="submit" class="submit" value="Add product">
+    </div>
+</form>

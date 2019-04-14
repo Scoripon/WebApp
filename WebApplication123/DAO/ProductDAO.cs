@@ -57,7 +57,7 @@ namespace WebApplication123.DAO
                         product.Price = rdr["price"].ToString();
                         product.Details = rdr["details"].ToString();
                         product.Quantity = rdr["quantity"].ToString();
-                        product.Category = rdr["type"].ToString();
+                        product.Category = rdr["category"].ToString();
                         products.Add(product);
                     }
                 }
@@ -84,7 +84,7 @@ namespace WebApplication123.DAO
                     cmd.Parameters.AddWithValue("@Id_product", product.Id_product);
                     cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
                     cmd.Parameters.AddWithValue("@Price", product.Price);
-                    cmd.Parameters.AddWithValue("@Type", product.Category);
+                    cmd.Parameters.AddWithValue("@Category", product.Category);
                     cmd.Parameters.AddWithValue("@Quantity", product.Quantity);
                     cmd.Parameters.AddWithValue("@Details", product.Details);
                     con.Open();
@@ -119,7 +119,7 @@ namespace WebApplication123.DAO
                         product.Price = rdr["price"].ToString();
                         product.Details = rdr["details"].ToString();
                         product.Quantity = rdr["quantity"].ToString();
-                        product.Category = rdr["type"].ToString();
+                        product.Category = rdr["category"].ToString();
 
                     }
                         con.Close();

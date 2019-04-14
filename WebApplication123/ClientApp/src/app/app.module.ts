@@ -14,12 +14,14 @@ import { UserSettingsComponent } from './home/userSettings/userSettings.componen
 import { EditUserComponent } from './home/userSettings/editUser/editUser.component';
 import { LoginComponent } from './login/login.component';
 import { TablesComponent } from './tables/tables.component';
+import { ArticalFormComponent } from './home/userSettings/articalForm/articalForm.component';
 
 // Services
 import { UserService } from './_services/user.service';
 import { UserAuthenticationService } from './_services/user-authentication.service';
 import { AlertService } from './_services/alert.service';
 import { AuthGuard } from './_guards/auth.guard';
+import { ProductService } from './_services/product.service';
 
 // Routes setup
 const appRoutes: Routes = [
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     UserSettingsComponent,
     LoginComponent,
     EditUserComponent,
-    TablesComponent
+    TablesComponent,
+    ArticalFormComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,7 @@ const appRoutes: Routes = [
     FormsModule
   ],
   // Ovde se registruju servisi
-  providers: [UserService, UserAuthenticationService, AlertService, AuthGuard],
+  providers: [UserService, UserAuthenticationService, AlertService, AuthGuard, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

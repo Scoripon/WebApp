@@ -1,0 +1,93 @@
+.artical-form {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 80%;
+    margin: auto;
+    // border: 1px solid rgba(71, 110, 173, 0.6);
+    box-shadow: 2px 6px 20px 5px lightgrey;
+    color: #476ead;
+
+    .form-group {
+        padding: 0px 15px 10px 0px;
+        display: grid;
+        grid-template-columns: 35% 65%;
+
+        &.details {
+            display: block;
+            padding-right: 0px;
+
+            h4 {
+                text-align: center;
+                margin-top: 0px;
+                letter-spacing: 2px;
+            }
+
+            .product-details {
+                max-width: 98%;
+                max-height: 200px;
+                border: none;
+            }
+        }
+
+        .title {}
+
+        .form-control {
+            outline: none;
+            border: none;
+            border-bottom: 1px solid rgba(71, 110, 173, 0.7);
+            padding: 0px 0px 4px 2px;
+            width: 100%;
+            height: 22px;
+            cursor: pointer;
+            color: #616a7a;
+            font-size: 16px;
+
+            /* WebKit browsers */
+            &::-webkit-input-placeholder {
+                font-size: 16px;
+            }
+
+            /* Firefox < 19 */
+            &:-moz-placeholder {
+                font-size: 16px;
+            }
+
+            /* Firefox > 19 */
+            &::-moz-placeholder {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .left-section {
+        padding: 35px 0px 35px 35px;
+    }
+
+    .right-section {
+        background-color:#476ead;
+        color: #fff;
+        padding: 35px 15px;
+    }
+
+    .submit {
+        cursor: pointer;
+        padding: 10px 35px;
+        border-radius: -30%;
+        border: none;
+        float: right;
+        color: #fff;
+        background-color: rgb(234, 155, 4);
+        font-weight: bold;
+        border: 1px solid rgb(234, 155, 4);
+
+        &:hover {
+            background-color: #fff;
+            color: rgb(234, 155, 4);
+            border: 1px solid rgb(234, 155, 4);
+        }
+    }
+
+    .add-image {
+        cursor: pointer;
+    }
+}

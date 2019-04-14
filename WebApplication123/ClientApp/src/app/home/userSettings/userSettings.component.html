@@ -8,7 +8,7 @@
             <ul>
                 <li (click)="openEditForm(currentUser)">Edit user</li>
                 <li *ngIf="currentUser.type.toLowerCase() === 'a'" (click)="onAdminSettingsClicked()">Admin settings</li>
-                <li (click)="showAdminSettings = false;">Shift score</li>
+                <li (click)="showAdminSettings = false;">Articles managementT</li>
             </ul>
         </nav>
         <button class="back-btn" routerLink="/home">Back to home</button>
@@ -46,5 +46,9 @@
         </table>
 
         <edit-user *ngIf="openEdit" [userToEdit]="selectedUser" (userEdited)="onUserEdited($event)"></edit-user>
+
+        <artical-form></artical-form>
+
+        <!-- <button (click)="fetchProducts()">Fetch products</button> -->
     </section>
 </div>

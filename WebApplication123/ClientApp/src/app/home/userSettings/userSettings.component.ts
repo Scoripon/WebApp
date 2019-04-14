@@ -3,6 +3,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/user';
 import { Subscription } from 'rxjs';
 import { UserAuthenticationService } from 'src/app/_services/user-authentication.service';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -13,6 +14,7 @@ import { UserAuthenticationService } from 'src/app/_services/user-authentication
 export class UserSettingsComponent implements OnInit {
 
     allUsers: any;
+    allProducts: any;
     selectedUser: any;
     openEdit: boolean = false;
     showAdminSettings: boolean = false;
@@ -21,6 +23,7 @@ export class UserSettingsComponent implements OnInit {
 
     constructor(
         private userService: UserService,
+        private productService: ProductService,
         private authentication: UserAuthenticationService,
     ) {
         this.currentUserSubscription = this.authentication.currentUser.subscribe(user => {
@@ -43,6 +46,21 @@ export class UserSettingsComponent implements OnInit {
                 this.allUsers = data;
 
                 console.log(data);
+            },
+            error => {}
+        );
+    }
+
+    /**
+     * @name fetchUsers
+     * @description It will fetch all registered users, which will be displayed in users table
+     */
+    fetchProducts() {
+        this.productService.getAllProducts().subscribe(
+            data => {
+                // this.allUsers = data;
+
+                console.log('All products ', data);
             },
             error => {}
         );

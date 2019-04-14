@@ -1,6 +1,5 @@
 Create procedure spAddProduct
 (        
-	@Id_product INT,
     @ProductName VARCHAR(30),         
     @Price MONEY,        
     @Quantity INT,        
