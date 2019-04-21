@@ -27,6 +27,6 @@
             <h4>Product details</h4>
             <textarea class="product-details" rows="4" cols="60" formControlName="productDetails" placeholder="Add product details here"></textarea>
         </div>
-        <input type="submit" class="submit" value="Add product">
+        <input type="submit" class="submit" value="{{ product ? 'Edit ' : 'Add '}}product">
     </div>
 </form>

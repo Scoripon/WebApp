@@ -3,7 +3,6 @@
     grid-template-columns: 60% 40%;
     width: 80%;
     margin: auto;
-    // border: 1px solid rgba(71, 110, 173, 0.6);
     box-shadow: 2px 6px 20px 5px lightgrey;
     color: #476ead;
 
@@ -45,16 +44,19 @@
             /* WebKit browsers */
             &::-webkit-input-placeholder {
                 font-size: 16px;
+                color: rgba(71, 110, 173, 0.5);
             }
 
             /* Firefox < 19 */
             &:-moz-placeholder {
                 font-size: 16px;
+                color: rgba(71, 110, 173, 0.5);
             }
 
             /* Firefox > 19 */
             &::-moz-placeholder {
                 font-size: 16px;
+                color: rgba(71, 110, 173, 0.5);
             }
         }
     }

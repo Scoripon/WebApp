@@ -15,6 +15,7 @@ import { EditUserComponent } from './home/userSettings/editUser/editUser.compone
 import { LoginComponent } from './login/login.component';
 import { TablesComponent } from './tables/tables.component';
 import { ArticalFormComponent } from './home/userSettings/articalForm/articalForm.component';
+import { ArticalTableComponent } from './home/userSettings/articalTable/articalTable.component';
 
 // Services
 import { UserService } from './_services/user.service';
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     LoginComponent,
     EditUserComponent,
     TablesComponent,
-    ArticalFormComponent
+    ArticalFormComponent,
+    ArticalTableComponent
   ],
   imports: [
     BrowserModule,

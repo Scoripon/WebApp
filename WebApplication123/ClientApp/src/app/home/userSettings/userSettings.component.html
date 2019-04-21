@@ -6,16 +6,17 @@
         <h2 class="welcome">Welcome {{currentUser.username}}!</h2>
         <nav>
             <ul>
-                <li (click)="openEditForm(currentUser)">Edit user</li>
-                <li *ngIf="currentUser.type.toLowerCase() === 'a'" (click)="onAdminSettingsClicked()">Admin settings</li>
-                <li (click)="showAdminSettings = false;">Articles managementT</li>
+                <li (click)="onUserInfoClicked()" [ngClass]="{'active': showUserInfo}">User info</li>
+                <li (click)="openEditForm(currentUser)" [ngClass]="{'active': openEdit}">Edit user</li>
+                <li (click)="onAdminSettingsClicked()" [ngClass]="{'active': showAdminSettings}" *ngIf="isAdmin">Admin settings</li>
+                <li (click)="onArticlesManagementClicked()" [ngClass]="{'active': showArticlesManagement}">Articles management</li>
             </ul>
         </nav>
         <button class="back-btn" routerLink="/home">Back to home</button>
     </section>
 
     <section class="right-section">
-        <table class="users-table" *ngIf="showAdminSettings && (currentUser.type.toLowerCase() === 'a')">
+        <table class="users-table" *ngIf="showAdminSettings && isAdmin">
             <thead>
                 <tr class="title-row">
                     <th >No</th>
@@ -45,10 +46,11 @@
             </tbody>
         </table>
 
-        <edit-user *ngIf="openEdit" [userToEdit]="selectedUser" (userEdited)="onUserEdited($event)"></edit-user>
+        <edit-user *ngIf="openEdit" [userToEdit]="userForEdit" (userEdited)="onUserEdited($event)"></edit-user>
 
-        <artical-form></artical-form>
-
-        <!-- <button (click)="fetchProducts()">Fetch products</button> -->
+        <ng-container *ngIf="showArticlesManagement">
+            <artical-form (productChanged)="onProductChanged()" [product]="productForEdit" *ngIf="isAdmin"></artical-form>
+            <artical-table (productAction)="onProductAction($event)" [articles]="allProducts" [isUserAdmin]="isAdmin"></artical-table>
+        </ng-container>
     </section>
 </div>
