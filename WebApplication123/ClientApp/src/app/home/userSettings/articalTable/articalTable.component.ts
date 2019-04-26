@@ -75,5 +75,5 @@ export class ArticalTableComponent implements OnInit, OnChanges {
         });
     }
 
-
+    findProduct() {}
 }

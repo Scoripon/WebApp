@@ -1,29 +1,39 @@
-<table class="pay-me-table">
-    <thead>
-        <tr class="title-row">
-            <th >No</th>
-            <th>Category</th>
-            <th>Product name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Details</th>
-            <th>ID</th>
-            <th *ngIf="isUserAdmin">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="single-element" *ngFor="let element of elements; let i = index;">
-            <td>{{ i + 1 }}</td>
-            <td>{{ element.category }}</td>
-            <td>{{ element.productName }}</td>
-            <td>{{ element.quantity }}</td>
-            <td>{{ element.price | currency: ' '}} €</td>
-            <td>{{ element.detailsSummary ? element.detailsSummary + '...' : element.details }}</td>
-            <td>{{ element.id_product }}</td>
-            <td *ngIf="isUserAdmin">
-                <button class="delete-btn" (click)="deleteProduct(element)"><i class="icon-trash"></i></button>
-                <button class="edit-btn" (click)="editProduct(element)"><i class="icon-pencil"></i></button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="artical-table-container">
+    <div class="search-placeholder">
+        <div class="icon-placeholder">
+            <label>Search articles</label>
+            <input type="text" class="search-input">
+            <i class="icon-search" (click)="findProduct()"></i>
+        </div>
+    </div>
+
+    <table class="pay-me-table">
+        <thead>
+            <tr class="title-row">
+                <th >No</th>
+                <th>Category</th>
+                <th>Product name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Details</th>
+                <th>ID</th>
+                <th *ngIf="isUserAdmin">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="single-element" *ngFor="let element of elements; let i = index;">
+                <td>{{ i + 1 }}</td>
+                <td>{{ element.category }}</td>
+                <td>{{ element.productName }}</td>
+                <td>{{ element.quantity }}</td>
+                <td>{{ element.price | currency: ' '}} €</td>
+                <td paymeTooltip="{{element.details}}" placement="right" delay="500">{{ element.detailsSummary ? element.detailsSummary + '...' : element.details }}</td>
+                <td>{{ element.id_product }}</td>
+                <td *ngIf="isUserAdmin">
+                    <button class="delete-btn" (click)="deleteProduct(element)"><i class="icon-trash"></i></button>
+                    <button class="edit-btn" (click)="editProduct(element)"><i class="icon-pencil"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

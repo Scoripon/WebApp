@@ -24,6 +24,9 @@ import { AlertService } from './_services/alert.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { ProductService } from './_services/product.service';
 
+// DIrectives
+import { PaymeTooltipDirective } from './_directives/payme-tooltip.directive';
+
 // Routes setup
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -47,7 +50,8 @@ const appRoutes: Routes = [
     EditUserComponent,
     TablesComponent,
     ArticalFormComponent,
-    ArticalTableComponent
+    ArticalTableComponent,
+    PaymeTooltipDirective
   ],
   imports: [
     BrowserModule,

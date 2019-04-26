@@ -1,79 +1,130 @@
-.pay-me-table {
-    border-collapse: collapse;
-    margin: auto;
-    width: 80%;
-    margin-top: 15px;
-    box-shadow: 2px 6px 20px 5px lightgrey;
-    font-size: 15px;
+.artical-table-container {
 
-    thead {
+    .search-placeholder {
+        width: 80%;
+        margin: auto;
+        margin-top: 30px;
+        background-color: rgb(234, 190, 11);
+        padding: 10px 0px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
 
-        .title-row {
-            color: #fff;
-            background-color: #ea9b04;
-            height: 50px;
+        .icon-placeholder {
+            display: inline;
 
-            th {
-                padding-right: 10px;
-                border-right: 1px solid #f3b2089c;
+            label {
+                color: #fff;
+                font-weight: 600;
+                margin-left: 10px;
+            }
 
-                &:first-child {
-                    padding-left: 10px;
+            .search-input {
+                border-radius: 14px;
+                outline: none;
+                margin-left: 10px;
+                padding: 5px 5px 5px 10px;
+                color: #2055aacc;
+                border: none;
+                width: 180px;
+                background-color: #faf9fb82;
+                -webkit-transition: width 0.7s; /* For Safari 3.1 to 6.0 */
+                transition: width 0.7s;
+
+                &:focus {
+                    width: 250px;
                 }
+            }
+
+            i {
+                position: relative;
+                right: 28px;
+                background-color: #ea9b04;
+                top: 1px;
+                padding: 4px 4px;
+                border-top-right-radius: 14px;
+                border-bottom-right-radius: 14px;
+                cursor: pointer;
+                color: #fff;
             }
         }
 
     }
+    .pay-me-table {
+        border-collapse: collapse;
+        margin: auto;
+        width: 80%;
+        box-shadow: 2px 14px 20px 5px lightgrey;
+        font-size: 15px;
 
-    tbody {
-        background-color: rgb(250, 249, 251);
+        thead {
 
-        .single-element {
-            border-bottom: 1px solid #e6ecff;
-            height: 40px;
-            cursor: pointer;
-            text-align: center;
-            color: #113775;
-            letter-spacing: 1.5px;
+            .title-row {
+                color: #fff;
+                background-color: #ea9b04;
+                height: 50px;
 
-            td {
-                border-right: 1px solid #e6ecff;
+                th {
+                    padding-right: 10px;
+                    border-right: 1px solid #f3b2089c;
 
-                &:first-child {
-                    border-left: 1px solid #e6ecff;
-                }
-
-            }
-
-            .delete-btn {
-                background-color: #fff;
-                color: #ea9b04;
-                border: 1px solid #ea9b04;
-                padding: 6px;
-                cursor: pointer;
-                font-size: 14px;
-                border-radius: 50%;
-
-
-                &:hover {
-                    background-color: #ea9b04;
-                    color: #fff;
+                    &:first-child {
+                        padding-left: 10px;
+                    }
                 }
             }
 
-            .edit-btn {
-                background-color: #fff;
-                border: 1px solid #476ead;
-                padding: 6px;
-                margin-left: 8px;
-                color: #476ead;
-                cursor: pointer;
-                font-size: 14px;
-                border-radius: 50%;
+        }
 
-                &:hover {
-                    background-color: #476ead;
-                    color: #fff;
+        tbody {
+            background-color: rgb(250, 249, 251);
+
+            .single-element {
+                border-bottom: 1px solid #e6ecff;
+                height: 40px;
+                cursor: pointer;
+                text-align: center;
+                color: #113775;
+                letter-spacing: 1.5px;
+
+                td {
+                    border-right: 1px solid #e6ecff;
+
+                    &:first-child {
+                        border-left: 1px solid #e6ecff;
+                    }
+
+                }
+
+                .delete-btn {
+                    background-color: #fff;
+                    color: #ea9b04;
+                    border: 1px solid #ea9b04;
+                    padding: 6px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    border-radius: 50%;
+
+
+                    &:hover {
+                        background-color: #ea9b04;
+                        color: #fff;
+                    }
+                }
+
+                .edit-btn {
+                    background-color: #fff;
+                    border: 1px solid #476ead;
+                    padding: 6px;
+                    margin-left: 8px;
+                    color: #476ead;
+                    cursor: pointer;
+                    font-size: 14px;
+                    border-radius: 50%;
+
+                    &:hover {
+                        background-color: #476ead;
+                        color: #fff;
+                    }
                 }
             }
         }
