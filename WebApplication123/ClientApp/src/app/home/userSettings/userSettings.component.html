@@ -52,5 +52,7 @@
             <artical-form (productChanged)="onProductChanged()" [product]="productForEdit" *ngIf="isAdmin"></artical-form>
             <artical-table (productAction)="onProductAction($event)" [articles]="allProducts" [isUserAdmin]="isAdmin"></artical-table>
         </ng-container>
+
+        <userinfo *ngIf="showUserInfo"></userinfo>
     </section>
 </div>

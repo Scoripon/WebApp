@@ -24,6 +24,10 @@ export class UserAuthenticationService {
             .pipe(map(user => {
 
                 if (user) {
+                    // Save a moment when the user logged in
+                    const now = new Date();
+                    sessionStorage.setItem('loginTime', JSON.stringify(now));
+
                     // store user details and jwt token in session storage to keep user logged in between page refreshes
                     this.setSessionStorage(user);
                 }
@@ -34,6 +38,7 @@ export class UserAuthenticationService {
     logout() {
         // remove user from local storage to log user out
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('loginTime');
         this.currentUserSubject.next(null);
     }
 

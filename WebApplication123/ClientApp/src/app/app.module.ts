@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { TablesComponent } from './tables/tables.component';
 import { ArticalFormComponent } from './home/userSettings/articalForm/articalForm.component';
 import { ArticalTableComponent } from './home/userSettings/articalTable/articalTable.component';
+import { UserinfoComponent } from './home/userSettings/userinfo/userinfo.component';
 
 // Services
 import { UserService } from './_services/user.service';
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     TablesComponent,
     ArticalFormComponent,
     ArticalTableComponent,
-    PaymeTooltipDirective
+    PaymeTooltipDirective,
+    UserinfoComponent
   ],
   imports: [
     BrowserModule,

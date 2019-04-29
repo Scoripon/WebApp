@@ -1,0 +1,34 @@
+<div class="user-info-container">
+    <div class="nav-section">
+        <div class="start">
+            Your shift started at: {{ userLoginTime | date: 'HH:mm ' }} on
+            {{ userLoginTime | date: 'dd:MM:yyyy' }}
+        </div>
+        <div class="current-time"><i class="icon-hourglass"></i>{{currentTime  | date: 'HH:mm:ss'}}</div>
+
+    </div>
+
+    <div class="briefinfo-section">
+        <div class="info-item">
+            <div class="info-value">
+                <div class="value">{{ userWorkingTime ? userWorkingTime : '00:00:00' }}</div>
+            </div>
+            <div class="info-title">Time at work</div>
+        </div>
+
+        <div class="info-item">
+            <div class="info-value">
+                <div class="value">{{ totalOrders }}</div>
+            </div>
+            <div class="info-title">Total number of orders</div>
+        </div>
+
+        <div class="info-item">
+            <div class="info-value">
+                <div class="value">{{ grossShiftScore | currency: ' '}} €</div>
+            </div>
+            <div class="info-title">Gross shift score</div>
+        </div>
+    </div>
+</div>
+
