@@ -46,4 +46,22 @@
             }
         }
     }
+
+    .main-charts {
+        text-align: center;
+        border-bottom: 1px solid #476ead2b;
+        box-shadow: 0px -2px 22px -10px lightgrey;
+    }
+
+    .charts-level {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 20px 0px;
+        background-color: #f4f3f7;
+
+        .chart-item {
+            padding: 0px 10px;
+            text-align: center;
+        }
+    }
 }

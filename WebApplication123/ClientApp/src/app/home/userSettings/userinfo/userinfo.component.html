@@ -30,5 +30,41 @@
             <div class="info-title">Gross shift score</div>
         </div>
     </div>
+
+    <div class="main-charts">
+        <fusioncharts
+            width="600"
+            height="400"
+            type="pie3d"
+            [dataSource]=dataSource >
+        </fusioncharts>
+    </div>
+
+    <div class="charts-level" (window:resize)="onResize($event)">
+        <div class="chart-item">
+            <fusioncharts
+                width="{{dynamicWidth}}"
+                height="200"
+                type="pie3d"
+                [dataSource]=dataSource >
+            </fusioncharts>
+        </div>
+        <div class="chart-item">
+            <fusioncharts
+                width="{{dynamicWidth}}"
+                height="200"
+                type="pie3d"
+                [dataSource]=dataSource >
+            </fusioncharts>
+        </div>
+        <div class="chart-item">
+            <fusioncharts
+                width="{{dynamicWidth}}"
+                height="200"
+                type="pie3d"
+                [dataSource]=dataSource >
+            </fusioncharts>
+        </div>
+    </div>
 </div>
 

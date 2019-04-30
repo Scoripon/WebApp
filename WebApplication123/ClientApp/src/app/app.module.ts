@@ -28,6 +28,18 @@ import { ProductService } from './_services/product.service';
 // DIrectives
 import { PaymeTooltipDirective } from './_directives/payme-tooltip.directive';
 
+// Import angular-fusioncharts
+import { FusionChartsModule } from 'angular-fusioncharts';
+
+// Import FusionCharts library
+import * as FusionCharts from 'fusioncharts';
+
+// Load FusionCharts Individual Charts
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+
+// Use fcRoot function to inject FusionCharts library, and the modules you want to use
+FusionChartsModule.fcRoot(FusionCharts, Charts)
+
 // Routes setup
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -60,7 +72,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FusionChartsModule
   ],
   // Ovde se registruju servisi
   providers: [UserService, UserAuthenticationService, AlertService, AuthGuard, ProductService],

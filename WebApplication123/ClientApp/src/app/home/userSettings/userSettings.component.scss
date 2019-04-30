@@ -2,12 +2,12 @@
     font-family: sans-serif;
     display: grid;
     grid-template-columns: 25% 75%;
+    min-height: 100vh;
 
     .left-section {
         background-color: rgb(30, 69, 132);
         opacity: 0.9;
         color: #fff;
-        height: 100vh;
         letter-spacing: 1px;
 
         .user-img {
@@ -73,7 +73,6 @@
 
     .right-section {
         width: 100%;
-        height: 100vh;
 
         .users-table {
             border-collapse: collapse;
