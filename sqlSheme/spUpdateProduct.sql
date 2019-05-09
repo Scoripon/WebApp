@@ -1,4 +1,3 @@
-
 Create procedure spUpdateProduct        
 (        
 	@Id_product INT,
@@ -6,6 +5,7 @@ Create procedure spUpdateProduct
     @Price MONEY,        
     @Quantity INT,        
     @Category VARCHAR(50),
+    @Subcategory VARCHAR(50),
 	@Details TEXT
 )        
 as        
@@ -15,6 +15,7 @@ begin
    price=@Price,        
    quantity=@Quantity,    
    category = @Category,
+   subcategory = @Subcategory,
    details	= @Details        
    where id_product = @Id_product
 End

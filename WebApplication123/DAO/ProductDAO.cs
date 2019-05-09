@@ -23,6 +23,7 @@ namespace WebApplication123.DAO
                     cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
                     cmd.Parameters.AddWithValue("@Price", product.Price);
                     cmd.Parameters.AddWithValue("@Category", product.Category);
+                    cmd.Parameters.AddWithValue("@Subcategory", product.Subcategory);
                     cmd.Parameters.AddWithValue("@Quantity", product.Quantity);
                     cmd.Parameters.AddWithValue("@Details", product.Details);
                     con.Open();
@@ -46,7 +47,7 @@ namespace WebApplication123.DAO
             {
                 using (con)
                 {
-                    SqlCommand cmd = new SqlCommand("select * from product", con);
+                    SqlCommand cmd = new SqlCommand("select * from Product;", con);
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
@@ -57,6 +58,7 @@ namespace WebApplication123.DAO
                         product.Price = rdr["price"].ToString();
                         product.Details = rdr["details"].ToString();
                         product.Quantity = rdr["quantity"].ToString();
+                        product.Subcategory = rdr["subcategory"].ToString();
                         product.Category = rdr["category"].ToString();
                         products.Add(product);
                     }
@@ -85,6 +87,7 @@ namespace WebApplication123.DAO
                     cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
                     cmd.Parameters.AddWithValue("@Price", product.Price);
                     cmd.Parameters.AddWithValue("@Category", product.Category);
+                    cmd.Parameters.AddWithValue("@Subcategory", product.Subcategory);
                     cmd.Parameters.AddWithValue("@Quantity", product.Quantity);
                     cmd.Parameters.AddWithValue("@Details", product.Details);
                     con.Open();
@@ -120,6 +123,7 @@ namespace WebApplication123.DAO
                         product.Details = rdr["details"].ToString();
                         product.Quantity = rdr["quantity"].ToString();
                         product.Category = rdr["category"].ToString();
+                        product.Subcategory = rdr["subcategory"].ToString();
 
                     }
                         con.Close();

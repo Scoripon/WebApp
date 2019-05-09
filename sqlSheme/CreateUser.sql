@@ -6,7 +6,7 @@ CREATE TABLE Users (
 	lastname varchar(30),
 	username varchar(30),
 	password varchar(50),
-	type varchar(1)
+	type varchar(6)
 );
 
 --select * from Users
